@@ -1,0 +1,204 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://pmc/shapes/PMCActuationProcessShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCActuation> ;
+            sh:name "actuation" ;
+            sh:path <https://pmc/classes/usedToMake> ] ;
+    sh:targetClass <https://pmc/classes/PMCActuationProcess> .
+
+<https://pmc/shapes/PMCActuationShape> a sh:NodeShape ;
+    sh:property [ sh:class xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "time" ;
+            sh:path ssn:resultTime ],
+        [ sh:class <rdfs:Literal> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "simpleResult" ;
+            sh:path ssn:hasSimpleResult ],
+        [ sh:class ssn:FeatureOfInterest ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "feature" ;
+            sh:path ssn:hasFeatureOfInterest ],
+        [ sh:class ssn:Result ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "result" ;
+            sh:path ssn:hasResult ] ;
+    sh:targetClass <https://pmc/classes/PMCActuation> .
+
+<https://pmc/shapes/PMCActuationStepShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCActuationProcess> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "exec" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#process> ],
+        [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:minCount 1 ;
+            sh:name "nextStep" ;
+            sh:path <https://pmc/classes/followedBy> ] ;
+    sh:targetClass <https://pmc/classes/PMCActuationStep> .
+
+<https//pmc/shapes/PMCConditionShape> a sh:NodeShape ;
+    sh:property [ sh:class <rdfs:Literal> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "body" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/generic/Expression.owl#expressionBody> ],
+        [ sh:class <rdfs:Literal> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "var" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/generic/Expression.owl#expressionVariable> ] ;
+    sh:targetClass <https://pmc/classes/PMCCondition> .
+
+<https//pmc/shapes/PMCConditionalStepShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "thenStep" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#then> ],
+        [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "elseStep" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#else> ],
+        [ sh:class <https://pmc/classes/PMCCondition> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "conditioned" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#ifCondition> ] ;
+    sh:targetClass <https://pmc/classes/PMCConditionalStep> .
+
+<https//pmc/shapes/PMCDirectStepShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCProcess> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "exec" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#process> ],
+        [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:minCount 1 ;
+            sh:name "nextStep" ;
+            sh:path <https://pmc/classes/followedBy> ] ;
+    sh:targetClass <https://pmc/classes/PMCDirectStep> .
+
+<https//pmc/shapes/PMCModuleShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "begin" ;
+            sh:path <https://pmc/classes/begin> ],
+        [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "end" ;
+            sh:path <https://pmc/classes/end> ] ;
+    sh:targetClass <https://pmc/classes/PMCModule> .
+
+<https//pmc/shapes/PMCObservationProcessShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCObservation> ;
+            sh:name "observation" ;
+            sh:path <https://pmc/classes/usedToMake> ] ;
+    sh:targetClass <https://pmc/classes/PMCObservationProcess> .
+
+<https//pmc/shapes/PMCObservationShape> a sh:NodeShape ;
+    sh:property [ sh:class ssn:FeatureOfInterest ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "feature" ;
+            sh:path ssn:hasFeatureOfInterest ],
+        [ sh:class xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "time" ;
+            sh:path ssn:resultTime ],
+        [ sh:class ssn:Result ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "result" ;
+            sh:path ssn:hasResult ],
+        [ sh:class <rdfs:Literal> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "simpleResult" ;
+            sh:path ssn:hasSimpleResult ] ;
+    sh:targetClass <https://pmc/classes/PMCObservation> .
+
+<https//pmc/shapes/PMCObservationStepShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:minCount 1 ;
+            sh:name "nextStep" ;
+            sh:path <https://pmc/classes/followedBy> ],
+        [ sh:class <https://pmc/classes/PMCObservationProcess> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "exec" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#process> ] ;
+    sh:targetClass <https://pmc/classes/PMCObservationStep> .
+
+<https//pmc/shapes/PMCProcessShape> a sh:NodeShape ;
+    sh:targetClass <https://pmc/classes/PMCProcess> .
+
+<https//pmc/shapes/PMCSamplingProcessShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCSampling> ;
+            sh:name "sampling" ;
+            sh:path <https://pmc/classes/usedToMake> ] ;
+    sh:targetClass <https://pmc/classes/PMCSamplingProcess> .
+
+<https//pmc/shapes/PMCSamplingShape> a sh:NodeShape ;
+    sh:property [ sh:class ssn:FeatureOfInterest ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "feature" ;
+            sh:path ssn:hasFeatureOfInterest ],
+        [ sh:class <rdfs:Literal> ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "simpleResult" ;
+            sh:path ssn:hasSimpleResult ],
+        [ sh:class ssn:Sample ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "result" ;
+            sh:path ssn:hasResult ],
+        [ sh:class xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "time" ;
+            sh:path ssn:resultTime ] ;
+    sh:targetClass <https://pmc/classes/PMCSampling> .
+
+<https//pmc/shapes/PMCSamplingStepShape> a sh:NodeShape ;
+    sh:property [ sh:class <https://pmc/classes/PMCStep> ;
+            sh:minCount 1 ;
+            sh:name "nextStep" ;
+            sh:path <https://pmc/classes/followedBy> ],
+        [ sh:class <https://pmc/classes/PMCSamplingProcess> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "exec" ;
+            sh:path <http://www.daml.org/services/owl-s/1.1/Process.owl#process> ] ;
+    sh:targetClass <https://pmc/classes/PMCSamplingStep> .
+
+<https//pmc/shapes/PMCStepShape> a sh:NodeShape ;
+    sh:targetClass <https://pmc/classes/PMCStep> .
+
+<https//pmc/shapes/DateTimeShape> a sh:NodeShape ;
+    sh:targetClass xsd:dateTime .
+
+<https//pmc/shapes/FeatureOfInterestShape> a sh:NodeShape ;
+    sh:targetClass ssn:FeatureOfInterest .
+
+<https//pmc/shapes/LiteralShape> a sh:NodeShape ;
+    sh:targetClass <rdfs:Literal> .
+
+<https//pmc/shapes/ResultShape> a sh:NodeShape ;
+    sh:targetClass ssn:Result .
+
+<https//pmc/shapes/SampleShape> a sh:NodeShape ;
+    sh:targetClass ssn:Sample .
+

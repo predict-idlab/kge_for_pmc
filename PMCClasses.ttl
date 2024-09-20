@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+
+<https://pmc/classes/PMCActuation> a rdfs:Class ;
+    rdfs:subClassOf ( ssn:Actuation ) .
+
+<https://pmc/classes/PMCActuationProcess> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCProcess> ) .
+
+<https://pmc/classes/PMCActuationStep> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCDirectStep> ) .
+
+<https://pmc/classes/PMCCondition> a rdfs:Class ;
+    rdfs:subClassOf ( <http://www.daml.org/services/owl-s/1.1/generic/Expression.owl#Condition> ) .
+
+<https://pmc/classes/PMCConditionalStep> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCStep> <http://www.daml.org/services/owl-s/1.1/Process.owl#If-Then-Else> ) .
+
+<https://pmc/classes/PMCDirectStep> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCStep> ) .
+
+<https://pmc/classes/PMCModule> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCStep> <http://www.daml.org/services/owl-s/1.1/Process.owl#Sequence> ) .
+
+<https://pmc/classes/PMCObservation> a rdfs:Class ;
+    rdfs:subClassOf ( ssn:Observation ) .
+
+<https://pmc/classes/PMCObservationProcess> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCProcess> ) .
+
+<https://pmc/classes/PMCObservationStep> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCDirectStep> ) .
+
+<https://pmc/classes/PMCProcess> a rdfs:Class ;
+    rdfs:subClassOf ( ssn:Procedure <http://www.daml.org/services/owl-s/1.1/Process.owl#Process> ) .
+
+<https://pmc/classes/PMCSampling> a rdfs:Class ;
+    rdfs:subClassOf ( ssn:Sampling ) .
+
+<https://pmc/classes/PMCSamplingProcess> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCProcess> ) .
+
+<https://pmc/classes/PMCSamplingStep> a rdfs:Class ;
+    rdfs:subClassOf ( <https://pmc/classes/PMCDirectStep> ) .
+
+<https://pmc/classes/PMCStep> a rdfs:Class ;
+    rdfs:subClassOf ( <http://www.daml.org/services/owl-s/1.1/Process.owl#ControlConstruct> ) .
+
+<https://pmc/classes/begin> a rdf:Property .
+
+<https://pmc/classes/end> a rdf:Property .
+
+<https://pmc/classes/followedBy> a rdf:Property .
+
+<https://pmc/classes/usedToMake> a rdf:Property .
+
